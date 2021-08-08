@@ -29,12 +29,21 @@ int main(int argc, char** argv){
   while (node.ok()){
     geometry_msgs::TransformStamped transformStamped;
     try{
+      //http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20listener%20%28C%2B%2B%29
       //transformStamped = tfBuffer.lookupTransform("turtle2", "turtle1",
       //                         ros::Time(0));
+
+      //http://wiki.ros.org/tf2/Tutorials/Adding%20a%20frame%20%28C%2B%2B%29
       //transformStamped = tfBuffer.lookupTransform("turtle2", "carrot1",
       //                         ros::Time(0));
+
+      //http://wiki.ros.org/tf2/Tutorials/tf2%20and%20time%20%28C%2B%2B%29
+      //success
+      //transformStamped = tfBuffer.lookupTransform("turtle2", "turtle1",
+      //                         ros::Time(0));
       /*
-      the following fails:
+      the following fails because we are requesting a frame transform at time "now"
+      the second turtle won't move and it outputs the following message:
       [ WARN] [1628322724.090060497]: Lookup would require extrapolation -0.000735974s into the future.  Requested time 1628322724.076374292 but the latest data is at time 1628322724.075638533, when looking up transform from frame [turtle1] to frame [turtle2]
       */
       //transformStamped = tfBuffer.lookupTransform("turtle2", "turtle1",
@@ -42,13 +51,16 @@ int main(int argc, char** argv){
       // fourth argument: timeout
       //transformStamped = tfBuffer.lookupTransform("turtle2", "turtle1",
       //                         ros::Time::now(), ros::Duration(3.0));
+
+      //http://wiki.ros.org/tf2/Tutorials/Time%20travel%20with%20tf2%20%28C%2B%2B%29
       /*
-      the following asks "what's the pos of turtle2 5s ago relative to turtle1 5s ago,
+      the following asks "what's the pose of turtle2 5s ago relative to turtle1 5s ago,
       so turtle2 will moves uncontrollably
       */
       //ros::Time past = ros::Time::now() - ros::Duration(5.0);
       //transformStamped = tfBuffer.lookupTransform("turtle2", "turtle1",
       //                         past, ros::Duration(1.0));
+      //success, the second turtle goes to where the first turtle was 5 seconds ago
       ros::Time now = ros::Time::now();
       ros::Time past = ros::Time::now() - ros::Duration(5.0);
       transformStamped = tfBuffer.lookupTransform("turtle2", now, 

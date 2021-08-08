@@ -1,6 +1,6 @@
 # r2d2
 
-[]()
+[Using urdf with robot_state_publisher](http://wiki.ros.org/urdf/Tutorials/Using%20urdf%20with%20robot_state_publisher)
 
 Compile:
 

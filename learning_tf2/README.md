@@ -133,4 +133,10 @@ Run:
 roslaunch learning_tf2 start_demo.launch
 ```
 
+The following asks "what's the pose of turtle2 5s ago relative to turtle1 5s ago", so turtle2 will moves uncontrollably:
+
 ![time_travel_uncontrol.gif](time_travel_uncontrol.gif)
+
+Turtle2 goes to where the first turtle was 5 seconds ago 
+
+![time_travel.gif](time_travel.gif)
